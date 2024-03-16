@@ -3,7 +3,7 @@ Callback factory in Python, providing two similar approaches to produce paramete
 
 ## Installation
 
-`pip install callback`
+`pip install callback-factory`
 
 ## Example
 

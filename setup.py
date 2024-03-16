@@ -1,7 +1,7 @@
 from setuptools import setup, find_packages
 
 setup(
-    name='callback',
+    name='callback-factory',
     version='0.0.1',
     description='A simple Python library for producing parameterized and flexible callbacks that can be overriden during execution',
     long_description=open('README.md').read(),
@@ -17,5 +17,5 @@ setup(
         "Programming Language :: Python :: 3",
         "License :: OSI Approved :: MIT License",
         "Operating System :: OS Independent",
-    ],
+    ]
 )
