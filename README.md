@@ -3,4 +3,14 @@ Callback factory in Python, providing two similar approaches to produce paramete
 
 ## Usage examples
 
-One can find usage examples in `examples.py`
+```
+from callback import CallbackFactory
+
+def greet(name, greeting="Hello"):
+    return f"{greeting}, {name}!"
+
+callback = CallbackFactory(greet, "Alice", greeting="Hi")
+
+print(callback())  # Output: Hi, Alice!
+```
+One can find more usage examples in `examples.py` at the root folder of this project.
