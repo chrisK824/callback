@@ -9,7 +9,7 @@ setup(
     url="https://github.com/chrisK824/callback",
     author='Chris Karvouniaris',
     author_email="christos.karvouniaris247@gmail.com",
-    packages=find_packages(),
+    packages=find_packages(exclude=["tests"]),
     install_requires=[],
     python_requires='>=3.5',
     license_files=["LICENSE"],
