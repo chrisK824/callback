@@ -35,15 +35,15 @@ def test_CallbackFactory_arguments_override():
         return x * y
 
     _callback = CallbackFactory(dummy_func, 2, 3)
-    assert _callback(3, 3) == 9
+    assert _callback(x=3, y=3) == 9
 
 
-def test_CallbackFactory_keyword_arguments_override():
+def test_CallbackFactory_partial_arguments_override():
     def dummy_func(x, y, z=1):
         return x + y + z
 
     _callback = CallbackFactory(dummy_func, 2, 3, z=4)
-    assert _callback(z=5) == 10
+    assert _callback(y=5) == 11
 
 
 def test_callback_factory_callable_function():
@@ -80,12 +80,12 @@ def test_callback_factory_arguments_override():
         return x * y
 
     _callback = callback_factory(dummy_func, 2, 3)
-    assert _callback(3, 3) == 9
+    assert _callback(x=3, y=3) == 9
 
 
-def test_callback_factory_keyword_arguments_override():
+def test_callback_factory_partial_arguments_override():
     def dummy_func(x, y, z=1):
         return x + y + z
 
     _callback = callback_factory(dummy_func, 2, 3, z=4)
-    assert _callback(z=5) == 10
+    assert _callback(y=5) == 11

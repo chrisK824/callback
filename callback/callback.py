@@ -1,5 +1,6 @@
 from functools import wraps
 from typing import Callable
+import inspect
 
 
 class CallbackFactory():
@@ -17,23 +18,30 @@ class CallbackFactory():
         """
         if not callable(func):
             raise TypeError("The 'func' argument must be callable")
+
         self.func = func
-        self.args = args
         self.kwargs = kwargs
+
+        if len(args) > 0:
+            func_args = inspect.getfullargspec(func).args
+            self.kwargs.update(
+                {
+                    func_args[i]: a 
+                    for i, a in enumerate(args)
+                }
+            )
     
-    def __call__(self, *override_args, **override_kwargs):
+    def __call__(self, **override_kwargs):
         """
-        Call the wrapped function with provided arguments.
+        Call the wrapped function with provided keyword arguments.
         If no arguments are provided during calling, 
         then the stored ones (during instance creation) are used.
 
         Returns:
             The result of calling the wrapped function with provided arguments.
         """
-        runtime_args = override_args if override_args else self.args
-        runtime_kwargs = override_kwargs if override_kwargs else self.kwargs
-
-        return self.func(*runtime_args, **runtime_kwargs)
+        runtime_kwargs = {**self.kwargs, **override_kwargs}
+        return self.func(**runtime_kwargs)
 
 
 def callback_factory(func: Callable, *args, **kwargs):
@@ -53,9 +61,18 @@ def callback_factory(func: Callable, *args, **kwargs):
     """
     if not callable(func):
         raise TypeError("The 'func' argument must be callable")
+
+    if len(args) > 0:
+        func_args = inspect.getfullargspec(func).args
+        kwargs.update(
+            {
+                func_args[i]: a 
+                for i, a in enumerate(args)
+            }
+        )
+
     @wraps(func)
-    def wrapped_func(*override_args, **override_kwargs):
-        runtime_args = override_args if override_args else args
-        runtime_kwargs = override_kwargs if override_kwargs else kwargs
-        return func(*runtime_args, **runtime_kwargs)
+    def wrapped_func(**override_kwargs):
+        runtime_kwargs = {**kwargs, **override_kwargs}
+        return func(**runtime_kwargs)
     return wrapped_func
