@@ -3,7 +3,8 @@ from setuptools import setup, find_packages
 setup(
     name='callback-factory',
     version='0.0.2',
-    description='A simple Python library for producing parameterized and flexible callbacks that can be overriden during execution',
+    description='A simple Python library for producing parameterized \
+        and flexible callbacks that can be overriden during execution',
     long_description=open('README.md').read(),
     long_description_content_type="text/markdown",
     url="https://github.com/chrisK824/callback",

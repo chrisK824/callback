@@ -30,6 +30,7 @@ def test_CallbackFactory_keyword_arguments_passing():
     _callback = CallbackFactory(dummy_func, 2, 3, z=4)
     assert _callback() == 9
 
+
 def test_CallbackFactory_arguments_override():
     def dummy_func(x, y):
         return x * y
