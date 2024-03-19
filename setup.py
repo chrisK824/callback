@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name='callback-factory',
-    version='0.0.2',
+    version='0.0.3',
     description='A simple Python library for producing parameterized \
         and flexible callbacks that can be overriden during execution',
     long_description=open('README.md').read(),
