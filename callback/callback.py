@@ -2,7 +2,7 @@ from functools import wraps
 from typing import Callable
 import inspect
 
-print(a)
+
 class CallbackFactory():
     def __init__(self, func: Callable, *args, **kwargs):
         """
