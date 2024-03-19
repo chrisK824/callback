@@ -10,7 +10,7 @@ on:
     branches: [ "main" ]
 
 jobs:
-  build:
+  tests:
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
@@ -37,6 +37,13 @@ jobs:
     - name: Test with pytest
       run: |
         pytest
+
+  build:
+    needs:
+    - tests
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
     - name: Install pypa/build
       run: >-
         python3 -m
