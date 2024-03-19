@@ -3,6 +3,8 @@ name: CI/CD
 on:
   push:
     branches: [ "main" ]
+    tags:
+      - 'refs/tags/*'
   pull_request:
     branches: [ "main" ]
 
