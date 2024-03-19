@@ -3,6 +3,8 @@ name: CI/CD
 on:
   push:
     branches: [ "main" ]
+  release:
+    types: [published]
 
 jobs:
   tests:
@@ -57,7 +59,7 @@ jobs:
 
   publish-to-pypi:
     name: Publish package to PyPI
-    if: github.event_name == 'push' && startsWith(github.ref, 'refs/tags')
+    if: github.event_name == 'release' && github.event.action == 'published'
     needs:
     - build
     runs-on: ubuntu-latest
